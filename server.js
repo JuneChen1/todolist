@@ -16,14 +16,14 @@ const requestListener = function(req, res){
     body += chunk;
   })
 
-  if (req.url == '/todos' && req.method === 'GET') {
+  if (req.url === '/todos' && req.method === 'GET') {
     res.writeHead(200, headers);
     res.write(JSON.stringify({
       "status": "success",
       "data": todos
     }));
     res.end();
-  } else if (req.url == '/todos' && req.method === 'POST') {
+  } else if (req.url === '/todos' && req.method === 'POST') {
     req.on('end', () => {
       try {
         const {title} = JSON.parse(body);
@@ -46,7 +46,7 @@ const requestListener = function(req, res){
         errorHandle(res);
       } 
     })
-  } else if (req.url == '/todos' && req.method === 'DELETE') {
+  } else if (req.url === '/todos' && req.method === 'DELETE') {
     todos.length = 0;
     res.writeHead(200, headers);
     res.write(JSON.stringify({
